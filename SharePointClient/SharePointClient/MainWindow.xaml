@@ -5,6 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="591" Width="959">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Purple.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -12,19 +22,30 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="142,10,0,0" VerticalAlignment="Top" Width="181" Height="38"/>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" Margin="0,-2,0,0" VerticalAlignment="Top" Width="951" Background="#FF1B58C3" Panel.ZIndex="1">
-            <Button Content="Create list" Margin="354,9,277,8" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold"/>
+        <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="139,4,0,0" VerticalAlignment="Top" Width="181" Height="25"/>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="951" Background="#FF1B58C3" Panel.ZIndex="1">
+            <Button Content="Create list" Margin="354,9,277,8" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold" Click="Button_Click_1" Background="#FFBDD4E6"/>
         </Border>
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="526" VerticalAlignment="Top" Width="148" Background="#FF3B73D4" Margin="0,34,0,0">
             <Button Content="Add task" HorizontalAlignment="Left" Margin="-1,23,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Click="Button_Click" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
         </Border>
 
-            <Button Content="Update task" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Width="147" 
+        <Button Content="Update task" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
         <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
+        <ListView x:Name="listView" ItemsSource="{Binding TodoList}" Margin="243,72,34,30">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Title"  Width="130" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status"  Width="130" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority"  Width="130" />
+                    <GridViewColumn DisplayMemberBinding="{Binding DueDate}" Header="Due Date"  Width="130"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PercentComplete}" Header="% Complete"  Width="130" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

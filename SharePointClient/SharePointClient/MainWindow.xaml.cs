@@ -1,5 +1,6 @@
 ﻿using Microsoft.SharePoint.Client;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 namespace SharePointClient
@@ -10,7 +11,10 @@ namespace SharePointClient
     public partial class MainWindow : Window
     {
         private ClientContext context;
+        private string myList;
         private Web web;
+        public ObservableCollection<Task> TodoList { get; private set; }
+        private string TodoListName = "My Todo list";
         public MainWindow()
         {
             InitializeComponent();
@@ -19,17 +23,14 @@ namespace SharePointClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            var myList = "My Todo list";
-            var taskName = "Buy popcorn";
             var task = new Task("Buy dollars", "Completed", "High", 0.2, DateTime.Now);
-            UpdateListItem(myList, taskName, task);
+            AddItem(task);
             context.ExecuteQuery();
         }
 
-        private void AddItem(string todoListName, Task newTask)
+        private void AddItem(Task newTask)
         {
-            List todoList = context.Web.Lists.GetByTitle(todoListName);
+            List todoList = context.Web.Lists.GetByTitle(TodoListName);
             ListItemCreationInformation itemCreateInfo = new ListItemCreationInformation();
             ListItem newItem = todoList.AddItem(itemCreateInfo);
             newItem["Title"] = newTask.Title;
@@ -38,6 +39,7 @@ namespace SharePointClient
             newItem["DueDate"] = newTask.DueDate;
             newItem["PercentComplete"] = newTask.PercentComplete;
             newItem.Update();
+            TodoList.Add(newTask);
         }
 
         private void UpdateListItem(string todoListName, string taskName, Task newTask)
@@ -110,6 +112,13 @@ namespace SharePointClient
             web = context.Web;
             context.Load(web);
             context.ExecuteQuery();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            myList = "NewList";
+            CreateList(myList);
+            listView.Visibility = Visibility.Visible;
         }
     }
 }
