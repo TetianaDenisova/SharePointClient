@@ -5,10 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="591" Width="959">
-    <Grid Background="#FF5B5B5B">
-        <Button Content="Login" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="147" Height="67" Background="#FF8F8989" FontSize="36" FontWeight="Bold" Click="Button_Click"/>
-        <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="10,48,0,0" VerticalAlignment="Top" Width="181" Height="38"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Height="38" Width="116" FontSize="22" FontWeight="Bold"/>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFC7C7C7" Offset="0.131"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="142,10,0,0" VerticalAlignment="Top" Width="181" Height="38"/>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" Margin="0,-2,0,0" VerticalAlignment="Top" Width="951" Background="#FF1B58C3" Panel.ZIndex="1">
+            <Button Content="Create list" Margin="354,9,277,8" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold"/>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="526" VerticalAlignment="Top" Width="148" Background="#FF3B73D4" Margin="0,34,0,0">
+            <Button Content="Add task" HorizontalAlignment="Left" Margin="-1,23,0,0" VerticalAlignment="Top" Width="147" 
+                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Click="Button_Click" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
+        </Border>
+
+            <Button Content="Update task" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Width="147" 
+                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
+        <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
+                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
 
     </Grid>
 </Window>

@@ -14,11 +14,12 @@ namespace SharePointClient
         public MainWindow()
         {
             InitializeComponent();
+            Login();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Login();
+
             var myList = "My Todo list";
             var taskName = "Buy popcorn";
             var task = new Task("Buy dollars", "Completed", "High", 0.2, DateTime.Now);
