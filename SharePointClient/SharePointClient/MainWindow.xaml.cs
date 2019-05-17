@@ -1,7 +1,7 @@
 ﻿using Microsoft.SharePoint.Client;
 using System;
+using System.Linq;
 using System.Windows;
-
 namespace SharePointClient
 {
     /// <summary>
@@ -20,22 +20,55 @@ namespace SharePointClient
         {
             Login();
             var myList = "My Todo list";
-            AddItem(myList, "Buy popcorn", "Completed", "High", DateTime.Now, 1);
-
+            var taskName = "Buy popcorn";
+            var task = new Task("Buy dollars", "Completed", "High", 0.2, DateTime.Now);
+            UpdateListItem(myList, taskName, task);
             context.ExecuteQuery();
         }
 
-        private void AddItem(string todoListName, string title, string status, string priority, DateTime dueDate, int percentComplete)
+        private void AddItem(string todoListName, Task newTask)
         {
             List todoList = context.Web.Lists.GetByTitle(todoListName);
             ListItemCreationInformation itemCreateInfo = new ListItemCreationInformation();
             ListItem newItem = todoList.AddItem(itemCreateInfo);
-            newItem["Title"] = title;
-            newItem["Status"] = status;
-            newItem["Priority"] = priority;
-            newItem["DueDate"] = dueDate;
-            newItem["PercentComplete"] = percentComplete;
+            newItem["Title"] = newTask.Title;
+            newItem["Status"] = newTask.Status;
+            newItem["Priority"] = newTask.Priority;
+            newItem["DueDate"] = newTask.DueDate;
+            newItem["PercentComplete"] = newTask.PercentComplete;
             newItem.Update();
+        }
+
+        private void UpdateListItem(string todoListName, string taskName, Task newTask)
+        {
+            string xmlQuery = "<View><RowLimit>100</RowLimit></View>";
+            List oList = context.Web.Lists.GetByTitle(todoListName);
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = xmlQuery;
+
+            ListItemCollection collListItem = oList.GetItems(camlQuery);
+
+            context.Load(collListItem,
+                items => items.Where(
+                    list => list.DisplayName == taskName).Include(
+                    item => item.Id));
+
+            context.ExecuteQuery();
+            if (collListItem.Count > 0)
+            {
+                var idForUpdate = collListItem[0].Id;
+                ListItem oldItem = oList.GetItemById(idForUpdate);
+
+                oldItem["Title"] = newTask.Title;
+                oldItem["Status"] = newTask.Status;
+                oldItem["Priority"] = newTask.Priority;
+                oldItem["DueDate"] = newTask.DueDate;
+                oldItem["PercentComplete"] = newTask.PercentComplete;
+
+                oldItem.Update();
+
+                context.ExecuteQuery();
+            }
         }
 
         private void CreateList(string listName)
@@ -66,18 +99,16 @@ namespace SharePointClient
         {
             context.Load(web, w => w.Title, w => w.Description, w => w.Fields);
             context.ExecuteQuery();
-            tbFullInfo.Text = web.Title;
         }
 
         private void Login()
         {
-            context = new ClientContext("https://m365x460933.sharepoint.com/sites/TestTodoList");
+            context = new ClientContext("https://skybowdev.sharepoint.com/sites/dev_tko");
 
-            context.Credentials = new SharePointOnlineCredentials("admin@m365x460933.onmicrosoft.com", pbox1.SecurePassword.Copy());
+            context.Credentials = new SharePointOnlineCredentials("tetiana.kozlovska@skybow.com", pbox1.SecurePassword.Copy());
             web = context.Web;
             context.Load(web);
             context.ExecuteQuery();
-            label1.Content = web.Title;
         }
     }
 }
