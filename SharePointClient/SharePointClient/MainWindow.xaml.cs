@@ -1,4 +1,5 @@
 ﻿using Microsoft.SharePoint.Client;
+using System;
 using System.Windows;
 
 namespace SharePointClient
@@ -18,18 +19,31 @@ namespace SharePointClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Login();
-            GetTitle();
-            var myList = "My List";
+            var myList = "My Todo list";
+            AddItem(myList, "Buy popcorn", "Completed", "High", DateTime.Now, 1);
 
+            context.ExecuteQuery();
+        }
+
+        private void AddItem(string todoListName, string title, string status, string priority, DateTime dueDate, int percentComplete)
+        {
+            List todoList = context.Web.Lists.GetByTitle(todoListName);
+            ListItemCreationInformation itemCreateInfo = new ListItemCreationInformation();
+            ListItem newItem = todoList.AddItem(itemCreateInfo);
+            newItem["Title"] = title;
+            newItem["Status"] = status;
+            newItem["Priority"] = priority;
+            newItem["DueDate"] = dueDate;
+            newItem["PercentComplete"] = percentComplete;
+            newItem.Update();
         }
 
         private void CreateList(string listName)
         {
             ListCreationInformation creationInfo = new ListCreationInformation();
             creationInfo.Title = listName;
-            creationInfo.TemplateType = (int)ListTemplateType.Announcements;
+            creationInfo.TemplateType = (int)ListTemplateType.Tasks;
             List list = web.Lists.Add(creationInfo);
-            list.Description = "New Description";
 
             list.Update();
             context.ExecuteQuery();
@@ -57,9 +71,9 @@ namespace SharePointClient
 
         private void Login()
         {
-            context = new ClientContext("https://skybow.sharepoint.com/sites/TestTeamSite");
+            context = new ClientContext("https://m365x460933.sharepoint.com/sites/TestTodoList");
 
-            context.Credentials = new SharePointOnlineCredentials("tetiana.kozlovska@skybow.com", pbox1.SecurePassword.Copy());
+            context.Credentials = new SharePointOnlineCredentials("admin@m365x460933.onmicrosoft.com", pbox1.SecurePassword.Copy());
             web = context.Web;
             context.Load(web);
             context.ExecuteQuery();
