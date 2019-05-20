@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="591" Width="959">
+        Title="MainWindow" Height="591" Width="1058">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,29 +23,34 @@
             </LinearGradientBrush>
         </Grid.Background>
         <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="139,4,0,0" VerticalAlignment="Top" Width="181" Height="25"/>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="951" Background="#FF1B58C3" Panel.ZIndex="1">
-            <Button Content="Create list" Margin="354,9,277,8" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold" Click="Button_Click_1" Background="#FFBDD4E6"/>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="1050" Background="#FF1C5AC7" Panel.ZIndex="1">
+            <Button Content="Create list" Margin="811,7,52,9" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold" Click="Button_Click_1" Background="#FFBDD4E6"/>
         </Border>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="526" VerticalAlignment="Top" Width="148" Background="#FF3B73D4" Margin="0,34,0,0">
-            <Button Content="Add task" HorizontalAlignment="Left" Margin="-1,23,0,0" VerticalAlignment="Top" Width="147" 
+        
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="526" VerticalAlignment="Top" Width="148" Background="#FF3D76D8" Margin="0,34,0,0">
+            
+            <Button Content="Upload list" HorizontalAlignment="Left" Margin="-1,23,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Click="Button_Click" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
         </Border>
-
-        <Button Content="Update task" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" Width="147" 
-                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
-        <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
-                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
-        <ListView x:Name="listView" ItemsSource="{Binding TodoList}" Margin="243,72,34,30">
+        <Button x:Name="updateBtn" Content="Update task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
+                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="UpdateBtn_Click"/>
+        <ListView x:Name="listView" Margin="182,102,25,0" Background="#FFF9F9F9" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header=""  Width="0" />
                     <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Title"  Width="130" />
                     <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status"  Width="130" />
                     <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority"  Width="130" />
-                    <GridViewColumn DisplayMemberBinding="{Binding DueDate}" Header="Due Date"  Width="130"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding PercentComplete}" Header="% Complete"  Width="130" />
+                    <GridViewColumn DisplayMemberBinding="{Binding DueDate, StringFormat='dd-MM-yyyy'}" Header="Due Date"  Width="130"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PercentComplete, StringFormat=P0}" Header="% Complete" Width="130" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description"  Width="200" />
                 </GridView>
             </ListView.View>
         </ListView>
-
+        <Button Content="Create task" HorizontalAlignment="Left" Margin="0,142,0,0" VerticalAlignment="Top" Width="147" 
+            Height="72" Background="#FF4677D1" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Button_Click_2"/>
+        <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,319,0,0" VerticalAlignment="Top" Width="147" 
+            Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Button_Click_3"/>
+        <TextBlock x:Name="tbListName" Text="{Binding myList}" Margin="518,55,305,471" FontWeight="Bold" FontSize="20" />
     </Grid>
 </Window>
