@@ -22,15 +22,14 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <PasswordBox x:Name="pbox1" HorizontalAlignment="Left" Password="Semen07081977@" Margin="139,4,0,0" VerticalAlignment="Top" Width="181" Height="25"/>
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="1050" Background="#FF1C5AC7" Panel.ZIndex="1">
-            <Button Content="Create list" Margin="811,7,52,9" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold" Click="Button_Click_1" Background="#FFBDD4E6"/>
+            <Button Content="Create list" Margin="811,7,52,9" BorderBrush="{x:Null}" Foreground="#FF1B58C3" FontWeight="Bold" Click="Create_New_List_Click" Background="#FFBDD4E6"/>
         </Border>
         
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="526" VerticalAlignment="Top" Width="148" Background="#FF3D76D8" Margin="0,34,0,0">
             
             <Button Content="Upload list" HorizontalAlignment="Left" Margin="-1,23,0,0" VerticalAlignment="Top" Width="147" 
-                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Click="Button_Click" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
+                    Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Click="Upload_List" Foreground="#FFD6D1D1" BorderBrush="{x:Null}"/>
         </Border>
         <Button x:Name="updateBtn" Content="Update task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="UpdateBtn_Click"/>
@@ -48,9 +47,9 @@
             </ListView.View>
         </ListView>
         <Button Content="Create task" HorizontalAlignment="Left" Margin="0,142,0,0" VerticalAlignment="Top" Width="147" 
-            Height="72" Background="#FF4677D1" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Button_Click_2"/>
+            Height="72" Background="#FF4677D1" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Create_New_Task"/>
         <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,319,0,0" VerticalAlignment="Top" Width="147" 
-            Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Button_Click_3"/>
+            Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Remove_Task_Click"/>
         <TextBlock x:Name="tbListName" Text="{Binding myList}" Margin="518,55,305,471" FontWeight="Bold" FontSize="20" />
     </Grid>
 </Window>

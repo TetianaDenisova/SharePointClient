@@ -52,8 +52,11 @@ namespace SharePointClient
             tbTitle.Text = editTask.Title;
             tbComplete.Text = editTask.PercentComplete.ToString();
             tbDescription.Text = editTask.Description;
-            cbPriority.SelectedItem = cbPriority.Items.OfType<TextBlock>().Where(p => ((p)).Text == editTask.Priority);
-            cbStatus.SelectedItem = cbStatus.Items.OfType<TextBlock>().Where(p => ((p)).Text == editTask.Status);
+            var priorityIndex = cbPriority.Items.IndexOf(cbPriority.Items.OfType<TextBlock>().Single(p => p.Text == editTask.Priority));
+            cbPriority.SelectedIndex = priorityIndex;
+
+            var statusIndex = cbStatus.Items.IndexOf(cbStatus.Items.OfType<TextBlock>().Single(p => p.Text == editTask.Status));
+            cbStatus.SelectedIndex = statusIndex;
             dpicker.SelectedDate = editTask.DueDate;
         }
     }
