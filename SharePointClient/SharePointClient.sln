@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient", "SharePointClient\SharePointClient.csproj", "{47F3B357-66D9-4B88-9E6E-D9FFACDE38C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient.Service", "SharePointClient.DataAccess\SharePointClient.Service.csproj", "{3F316F8F-B651-4F83-82D3-446137B40F9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient.Output", "SharePointClient.Output\SharePointClient.Output.csproj", "{1ECE66E9-1883-4A8A-B939-E14278B9D3C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient.ObjectModel", "SharePointClient.ObjectModel\SharePointClient.ObjectModel.csproj", "{FCE063CE-19C3-4271-AA75-EFBCE8C4A87C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointClient.Controller", "SharePointClient.Controller\SharePointClient.Controller.csproj", "{9C0317CD-B039-4541-B339-781461DCF943}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{47F3B357-66D9-4B88-9E6E-D9FFACDE38C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F3B357-66D9-4B88-9E6E-D9FFACDE38C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F3B357-66D9-4B88-9E6E-D9FFACDE38C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F316F8F-B651-4F83-82D3-446137B40F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F316F8F-B651-4F83-82D3-446137B40F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F316F8F-B651-4F83-82D3-446137B40F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F316F8F-B651-4F83-82D3-446137B40F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ECE66E9-1883-4A8A-B939-E14278B9D3C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ECE66E9-1883-4A8A-B939-E14278B9D3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ECE66E9-1883-4A8A-B939-E14278B9D3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ECE66E9-1883-4A8A-B939-E14278B9D3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCE063CE-19C3-4271-AA75-EFBCE8C4A87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE063CE-19C3-4271-AA75-EFBCE8C4A87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE063CE-19C3-4271-AA75-EFBCE8C4A87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE063CE-19C3-4271-AA75-EFBCE8C4A87C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0317CD-B039-4541-B339-781461DCF943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0317CD-B039-4541-B339-781461DCF943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0317CD-B039-4541-B339-781461DCF943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0317CD-B039-4541-B339-781461DCF943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

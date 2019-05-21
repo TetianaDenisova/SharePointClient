@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="0,0,2,-1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFC7C7C7" Offset="0.131"/>
@@ -33,7 +33,7 @@
         </Border>
         <Button x:Name="updateBtn" Content="Update task" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="147" 
                     Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="UpdateBtn_Click"/>
-        <ListView x:Name="listView" Margin="182,102,25,0" Background="#FFF9F9F9" IsSynchronizedWithCurrentItem="True">
+        <ListView x:Name="listView" Margin="182,102,25,50" Background="#FFF9F9F9" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" Header=""  Width="0" />
@@ -50,6 +50,6 @@
             Height="72" Background="#FF4677D1" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Create_New_Task"/>
         <Button Content="Delete task" HorizontalAlignment="Left" Margin="0,319,0,0" VerticalAlignment="Top" Width="147" 
             Height="72" Background="#FF4779D3" FontSize="20" FontWeight="Bold" Foreground="#FFD6D1D1" BorderBrush="{x:Null}" Click="Remove_Task_Click"/>
-        <TextBlock x:Name="tbListName" Text="{Binding myList}" Margin="518,55,305,471" FontWeight="Bold" FontSize="20" />
+        <TextBlock x:Name="tbListName" Text="{Binding myList}" Margin="482,55,341,471" FontWeight="Bold" FontSize="20" />
     </Grid>
 </Window>

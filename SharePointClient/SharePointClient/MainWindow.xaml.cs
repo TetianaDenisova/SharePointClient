@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using SharePointClient.Controller;
+using System.Collections.ObjectModel;
 using System.Windows;
 namespace SharePointClient
 {
@@ -9,23 +9,13 @@ namespace SharePointClient
     public partial class MainWindow : Window
     {
         private string currentListName;
+        private ITaskController TaskController;
         private ObservableCollection<Task> todoList;
-        public ObservableCollection<Task> TodoList
-        {
-            get
-            {
-                if (todoList == null) { todoList = new ObservableCollection<Task>(); }
-                return todoList;
-            }
-            set
-            {
-                todoList = value;
-            }
-        }
         public MainWindow()
         {
             InitializeComponent();
-            SharePointService.Login();
+
+            TaskController.Login();
 
         }
 
@@ -33,7 +23,7 @@ namespace SharePointClient
         {
             currentListName = ShowModalWindow("ВВедіть назву списку");
             if (currentListName == string.Empty) return;
-            todoList = SharePointService.UploadList(currentListName);
+            todoList = TaskController.DownloadList(currentListName);
             listView.ItemsSource = todoList;
             tbListName.Text = currentListName;
         }
@@ -50,15 +40,13 @@ namespace SharePointClient
             return string.Empty;
         }
 
-
         private void Create_New_List_Click(object sender, RoutedEventArgs e)
         {
             currentListName = ShowModalWindow("Введіть назву нового списку");
             tbListName.Text = currentListName;
             if (currentListName == string.Empty) return;
 
-            SharePointService.CreateList(currentListName);
-            listView.ItemsSource = TodoList;
+            listView.ItemsSource = TaskController.CreateList(currentListName);
         }
 
         private void Create_New_Task(object sender, RoutedEventArgs e)
@@ -66,9 +54,7 @@ namespace SharePointClient
             NewTaskWindow modalWindow = new NewTaskWindow();
             if (modalWindow.ShowDialog() == true)
             {
-                SharePointService.AddItem(modalWindow.EditTask);
-                TodoList.Add(modalWindow.EditTask);
-                listView.ItemsSource = TodoList;
+                listView.ItemsSource = TaskController.AddItem(modalWindow.EditTask); ;
             }
         }
 
@@ -84,21 +70,14 @@ namespace SharePointClient
             modalWindow.EditTask = selectedTask;
             if (modalWindow.ShowDialog() == true)
             {
-                SharePointService.UpdateListItem(selectedTask.Title, modalWindow.EditTask);
-                var oldTask = TodoList.Single(x => x.Id == selectedTask.Id);
-                var index = TodoList.IndexOf(oldTask);
-                TodoList[index] = modalWindow.EditTask;
-                listView.ItemsSource = TodoList;
+                listView.ItemsSource = TaskController.UpdateItem(selectedTask.Title, modalWindow.EditTask, selectedTask.Id);
             }
         }
 
         private void Remove_Task_Click(object sender, RoutedEventArgs e)
         {
             var selectedTask = (Task)listView.SelectedItem;
-            var oldTask = TodoList.Single(x => x.Id == selectedTask.Id);
-            var index = TodoList.IndexOf(oldTask);
-            TodoList.RemoveAt(index);
-            SharePointService.RemoveItem(index);
+            TaskController.RemoveItem(selectedTask.Id);
         }
     }
 }

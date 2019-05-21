@@ -21,6 +21,7 @@ namespace SharePointClient
             this.Title = Title;
             this.Status = Status;
             this.Priority = Priority;
+            this.Description = Description;
             this.PercentComplete = PercentComplete;
             this.DueDate = DueDate;
             Id = Guid.NewGuid();
